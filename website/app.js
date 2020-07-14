@@ -14,6 +14,7 @@ const getData = async () => {
   try {
     const getResponse = await fetch("/api/data");
     const { date, temp, content } = await getResponse.json();
+    if (!(date && temp && content)) return; /* skip if no data yet */
     dateElement.innerHTML = date;
     tempElement.innerHTML = temp;
     contentElement.innerHTML = content;
